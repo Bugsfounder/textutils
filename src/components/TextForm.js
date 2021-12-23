@@ -12,6 +12,44 @@ export default function TextForm (props) {
     const handleLcClick = () => {
         setText(text.toLowerCase())
     }
+    const handleClear = () => {
+        setText("")
+    }
+    const handleCapitalize = () => {
+        try {
+            setText(text[0].toUpperCase() + text.substring(1, text.length).toLowerCase())
+        } catch (error) {
+            console.log("Enter Some Text to Analyze");
+        }
+
+    }
+    const handleCapitalizeEachWord = () => {
+        try {
+
+            let myarr = text.split(" ");
+            let newText = ''
+            for (let i = 0; i < myarr.length; i++) {
+                if (i < myarr.length - 1) {
+                    newText += myarr[i][0].toUpperCase() + myarr[i].substring(1, myarr[i].length).toLowerCase() + " "
+                } else {
+                    newText += myarr[i][0].toUpperCase() + myarr[i].substring(1, myarr[i].length).toLowerCase()
+                }
+
+            }
+            setText(newText);
+        } catch (errot) {
+            console.log("Enter Some Text To Analyze");
+        }
+    }
+    const handleCopyToClipboard = () => {
+        try {
+            let myBox = document.getElementById("myBox");
+            myBox.select()
+            document.execCommand("copy")
+        } catch (errot) {
+            console.log("Enter Text To Copy");
+        }
+    }
 
 
     const [text, setText] = useState("");
@@ -27,6 +65,10 @@ export default function TextForm (props) {
                 </div>
                 <button className="btn btn-primary btn-sm" onClick={handleUpClick}>Upper Case</button>
                 <button className="btn btn-primary btn-sm ms-2" onClick={handleLcClick}>Lower Case</button>
+                <button className="btn btn-primary btn-sm ms-2" onClick={handleCapitalize}>Capitalize</button>
+                <button className="btn btn-primary btn-sm ms-2" onClick={handleCapitalizeEachWord}>Capitalize</button>
+                <button className="btn btn-primary btn-sm ms-2" onClick={handleCopyToClipboard}>Copy To Clipboard</button>
+                <button className="btn btn-danger btn-sm ms-2" onClick={handleClear}>Clear</button>
             </div>
             <div className="container my2">
                 <h3>Your Text Summary</h3>
