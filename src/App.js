@@ -1,16 +1,15 @@
 import './App.css';
-import About from './components/About';
+// import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import { useState } from 'react';
 import Alert from './components/Alert';
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route
+// } from "react-router-dom";
 
 function App () {
   const [mode, setMode] = useState('light'); // WHETHER DARK MODE IS ENABLED OR NOT
@@ -65,12 +64,12 @@ function App () {
 
   return (
     <>
-      <Router>
-        <Navbar title="TextUtils" aboutText="About" mode={mode} toggleMode={toggleMode} />
-        <Alert alert={alert} />
-        {/* <About /> */}
-        {/* <TextForm heading="Enter The Text To Analyze Below" showAlert={showAlert} toggleMode={toggleMode} /> */}
-        <Switch>
+      {/* <Router> */}
+      <Navbar title="TextUtils" aboutText="About" mode={mode} toggleMode={toggleMode} />
+      <Alert alert={alert} />
+      {/* <About /> */}
+      <TextForm heading="Enter The Text To Analyze Below" showAlert={showAlert} toggleMode={toggleMode} />
+      {/* <Switch>
 
           <Route exact path="/about">
             <About />
@@ -81,7 +80,7 @@ function App () {
 
         </Switch>
 
-      </Router>
+      </Router> */}
     </>
   );
 }
