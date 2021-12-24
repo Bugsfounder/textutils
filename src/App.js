@@ -10,8 +10,8 @@ function App () {
     <>
       <Navbar title="TextUtils" aboutText="About" />
       {/* <Navbar /> */}
-      {/* <TextForm heading="Enter The Text To Analyze Below" /> */}
-      <About />
+      <TextForm heading="Enter The Text To Analyze Below" />
+      {/* <About /> */}
     </>
   );
 }

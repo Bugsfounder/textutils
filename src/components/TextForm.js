@@ -49,7 +49,7 @@ export default function TextForm (props) {
         try {
             let myBox = document.getElementById("myBox");
             myBox.select()
-            document.execCommand("copy");
+            navigator.clipboard.writeText(myBox.value)
         } catch (errot) {
             console.log("Enter Text To Copy");
         }
