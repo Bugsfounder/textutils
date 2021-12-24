@@ -122,19 +122,19 @@ export default function TextForm (props) {
                 <div className="mb-3">
                     <textarea className="form-control" onChange={handleOnChange} id="myBox" value={text} rows="12" placeholder='Enter Text Here'></textarea>
                 </div>
-                <button className="btn btn-primary btn-sm" onClick={handleUpClick}>Upper Case</button>
-                <button className="btn btn-primary btn-sm ms-2" onClick={handleLcClick}>Lower Case</button>
-                <button className="btn btn-primary btn-sm ms-2" onClick={handleCapitalize}>Capitalize</button>
-                <button className="btn btn-primary btn-sm ms-2" onClick={handleCapitalizeEachWordRemoveExtraSpaces}>Capitalize Each Word</button>
-                <button className="btn btn-primary btn-sm ms-2" onClick={handleCopyToClipboard}>Copy To Clipboard</button>
-                <button className="btn btn-primary btn-sm ms-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
-                <button className="btn btn-danger btn-sm ms-2" onClick={handleClear}>Clear</button>
+                <button disabled={text.length === 0} className="btn btn-primary btn-sm" onClick={handleUpClick}>Upper Case</button>
+                <button disabled={text.length === 0} className="btn btn-primary btn-sm mx-2 my-2" onClick={handleLcClick}>Lower Case</button>
+                <button disabled={text.length === 0} className="btn btn-primary btn-sm mx-2 my-2" onClick={handleCapitalize}>Capitalize</button>
+                <button disabled={text.length === 0} className="btn btn-primary btn-sm mx-2 my-2" onClick={handleCapitalizeEachWordRemoveExtraSpaces}>Capitalize Each Word</button>
+                <button disabled={text.length === 0} className="btn btn-primary btn-sm mx-2 my-2" onClick={handleCopyToClipboard}>Copy To Clipboard</button>
+                <button disabled={text.length === 0} className="btn btn-primary btn-sm mx-2 my-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+                <button disabled={text.length === 0} className="btn btn-danger btn-sm  mx-2 my-2 onClick={handleClear}">Clear</button>
             </div>
-            <div className="container my2">
+            <div className="container my-2">
                 <h3>Your Text Summary</h3>
-                <p>{text.split(" ").length} words, {text.length} characters</p>
-                <p>{0.008 * text.split(" ").length} Minutes to read</p>
-                <h4>{text.length === 0 ? "Enter Text To Preview" : "Preview"}</h4>
+                <p>{text.split(" ").filter((element) => { return element.length !== 0 }).length} words, {text.length} characters</p>
+                <p>{0.008 * text.split(" ").filter((element) => { return element.length !== 0 }).length} Minutes to read</p>
+                <h4>{text.length === 0 ? "Nothing to Preview" : "Preview"}</h4>
                 <p>{text}</p>
             </div>
         </>
