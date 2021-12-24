@@ -27,9 +27,9 @@ export default function TextForm (props) {
 
     }
 
-    const handleCapitalizeEachWord = () => {
+    const handleCapitalizeEachWordRemoveExtraSpaces = () => {
         try {
-            let myarr = text.split(" ");
+            let myarr = text.split(/[ ]+/);
             let newText = '';
             for (let i = 0; i < myarr.length; i++) {
                 if (i < myarr.length - 1) {
@@ -55,6 +55,14 @@ export default function TextForm (props) {
         }
     }
 
+    const handleExtraSpaces = () => {
+        try {
+            setText(text.split(/[ ]+/).join(" "))
+        } catch (error) {
+            console.log("Enter Text");
+        }
+    }
+
     const [text, setText] = useState("");
     // text = "new Text" // Wrong way to change the state
     // setText("New Text"); // Correct way to change the state
@@ -64,20 +72,21 @@ export default function TextForm (props) {
             <div className='container my-3'>
                 <h2>{props.heading}</h2>
                 <div className="mb-3">
-                    <textarea className="form-control" onChange={handleOnChange} id="myBox" value={text} rows="10" placeholder='Enter Text Here'></textarea>
+                    <textarea className="form-control" onChange={handleOnChange} id="myBox" value={text} rows="12" placeholder='Enter Text Here'></textarea>
                 </div>
                 <button className="btn btn-primary btn-sm" onClick={handleUpClick}>Upper Case</button>
                 <button className="btn btn-primary btn-sm ms-2" onClick={handleLcClick}>Lower Case</button>
                 <button className="btn btn-primary btn-sm ms-2" onClick={handleCapitalize}>Capitalize</button>
-                <button className="btn btn-primary btn-sm ms-2" onClick={handleCapitalizeEachWord}>Capitalize</button>
+                <button className="btn btn-primary btn-sm ms-2" onClick={handleCapitalizeEachWordRemoveExtraSpaces}>Capitalize Each Word</button>
                 <button className="btn btn-primary btn-sm ms-2" onClick={handleCopyToClipboard}>Copy To Clipboard</button>
+                <button className="btn btn-primary btn-sm ms-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
                 <button className="btn btn-danger btn-sm ms-2" onClick={handleClear}>Clear</button>
             </div>
             <div className="container my2">
                 <h3>Your Text Summary</h3>
                 <p>{text.split(" ").length} words, {text.length} characters</p>
                 <p>{0.008 * text.split(" ").length} Minutes to read</p>
-                <h4>Preview</h4>
+                <h4>{text.length === 0 ? "Enter Text To Preview" : "Preview"}</h4>
                 <p>{text}</p>
             </div>
         </>
