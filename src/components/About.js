@@ -20,15 +20,17 @@ export default function About () {
                 }
             );
             setButtonText("Enable Dark Mode");
+            document.body.style.backgroundColor = 'white'
         } else {
             setMyStyle(
                 {
                     color: 'white',
-                    backgroundColor: 'black',
+                    backgroundColor: '#1d254f',
                     border: '1px solid white'
                 }
             );
             setButtonText("Disable Dark Mode");
+            document.body.style.backgroundColor = '#1d255f'
         }
 
     }

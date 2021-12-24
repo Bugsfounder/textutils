@@ -7,61 +7,109 @@ export default function TextForm (props) {
     }
 
     const handleUpClick = () => {
-        setText(text.toUpperCase());
+        try {
+            if (text.length > 0) {
+                setText(text.toUpperCase());
+                props.showAlert("Action Successfully Applied", 'success')
+            } else {
+                props.showAlert("Enter Something to Apply Changes", 'warning')
+            }
+        } catch (error) {
+            props.showAlert("Some Error Occur Try Again", 'danger')
+        }
     }
 
     const handleLcClick = () => {
-        setText(text.toLowerCase());
+        try {
+            if (text.length > 0) {
+                setText(text.toLowerCase());
+                props.showAlert("Action Successfully Applied", 'success')
+            } else {
+                props.showAlert("Enter Something to Apply Changes", 'warning')
+            }
+        } catch (error) {
+            props.showAlert("Some Error Occur Try Again", 'danger')
+        }
     }
 
     const handleClear = () => {
-        setText("");
+        try {
+            if (text.length > 0) {
+                props.showAlert("Action Successfully Applied", 'success')
+                setText("");
+            } else {
+                props.showAlert("Container Already Clear", 'warning')
+            }
+        } catch (error) {
+            props.showAlert("Some Error Occur Try Again", 'danger')
+        }
     }
 
     const handleCapitalize = () => {
         try {
-            setText(text[0].toUpperCase() + text.substring(1, text.length).toLowerCase());
+            if (text.length > 0) {
+                props.showAlert("Action Successfully Applied", 'success')
+                setText(text[0].toUpperCase() + text.substring(1, text.length).toLowerCase());
+            } else {
+                props.showAlert("Enter Something to Apply Changes", 'warning')
+            }
         } catch (error) {
-            console.log("Enter Some Text to Analyze");
+            props.showAlert("Some Error Occur Try Again", 'danger')
         }
 
     }
 
     const handleCapitalizeEachWordRemoveExtraSpaces = () => {
         try {
-            let myarr = text.split(/[ ]+/);
-            let newText = '';
-            for (let i = 0; i < myarr.length; i++) {
-                if (i < myarr.length - 1) {
-                    newText += myarr[i][0].toUpperCase() + myarr[i].substring(1, myarr[i].length).toLowerCase() + " ";
-                } else {
-                    newText += myarr[i][0].toUpperCase() + myarr[i].substring(1, myarr[i].length).toLowerCase();
-                }
+            if (text.length > 0) {
+                props.showAlert("Action Successfully Applied", 'success')
+                let myarr = text.split(/[ ]+/);
+                let newText = '';
+                for (let i = 0; i < myarr.length; i++) {
+                    if (i < myarr.length - 1) {
+                        newText += myarr[i][0].toUpperCase() + myarr[i].substring(1, myarr[i].length).toLowerCase() + " ";
+                    } else {
+                        newText += myarr[i][0].toUpperCase() + myarr[i].substring(1, myarr[i].length).toLowerCase();
+                    }
 
+                }
+                setText(newText);
+            } else {
+                props.showAlert("Enter Something to Apply Changes", 'warning')
             }
-            setText(newText);
         } catch (errot) {
-            console.log("Enter Some Text To Analyze");
+            props.showAlert("Some Error Occur Try Again", 'danger')
         }
     }
 
     const handleCopyToClipboard = () => {
         try {
-            let myBox = document.getElementById("myBox");
-            myBox.select()
-            navigator.clipboard.writeText(myBox.value)
+            if (text.length > 0) {
+                props.showAlert("Action Successfully Applied", 'success')
+                let myBox = document.getElementById("myBox");
+                myBox.select()
+                navigator.clipboard.writeText(myBox.value)
+            } else {
+                props.showAlert("Enter Something to Apply Changes", 'warning')
+            }
         } catch (errot) {
-            console.log("Enter Text To Copy");
+            props.showAlert("Some Error Occur Try Again", 'danger')
         }
     }
 
     const handleExtraSpaces = () => {
         try {
-            setText(text.split(/[ ]+/).join(" "))
+            if (text.length > 0) {
+                props.showAlert("Action Successfully Applied", 'success')
+                setText(text.split(/[ ]+/).join(" "))
+            } else {
+                props.showAlert("Enter Something to Apply Changes", 'warning')
+            }
         } catch (error) {
-            console.log("Enter Text");
+            props.showAlert("Some Error Occur Try Again", 'danger')
         }
     }
+
 
     const [text, setText] = useState("");
     // text = "new Text" // Wrong way to change the state
