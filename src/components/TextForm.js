@@ -7,32 +7,35 @@ export default function TextForm (props) {
     }
 
     const handleUpClick = () => {
-        setText(text.toUpperCase())
+        setText(text.toUpperCase());
     }
+
     const handleLcClick = () => {
-        setText(text.toLowerCase())
+        setText(text.toLowerCase());
     }
+
     const handleClear = () => {
-        setText("")
+        setText("");
     }
+
     const handleCapitalize = () => {
         try {
-            setText(text[0].toUpperCase() + text.substring(1, text.length).toLowerCase())
+            setText(text[0].toUpperCase() + text.substring(1, text.length).toLowerCase());
         } catch (error) {
             console.log("Enter Some Text to Analyze");
         }
 
     }
+
     const handleCapitalizeEachWord = () => {
         try {
-
             let myarr = text.split(" ");
-            let newText = ''
+            let newText = '';
             for (let i = 0; i < myarr.length; i++) {
                 if (i < myarr.length - 1) {
-                    newText += myarr[i][0].toUpperCase() + myarr[i].substring(1, myarr[i].length).toLowerCase() + " "
+                    newText += myarr[i][0].toUpperCase() + myarr[i].substring(1, myarr[i].length).toLowerCase() + " ";
                 } else {
-                    newText += myarr[i][0].toUpperCase() + myarr[i].substring(1, myarr[i].length).toLowerCase()
+                    newText += myarr[i][0].toUpperCase() + myarr[i].substring(1, myarr[i].length).toLowerCase();
                 }
 
             }
@@ -41,16 +44,16 @@ export default function TextForm (props) {
             console.log("Enter Some Text To Analyze");
         }
     }
+
     const handleCopyToClipboard = () => {
         try {
             let myBox = document.getElementById("myBox");
             myBox.select()
-            document.execCommand("copy")
+            document.execCommand("copy");
         } catch (errot) {
             console.log("Enter Text To Copy");
         }
     }
-
 
     const [text, setText] = useState("");
     // text = "new Text" // Wrong way to change the state
@@ -74,10 +77,8 @@ export default function TextForm (props) {
                 <h3>Your Text Summary</h3>
                 <p>{text.split(" ").length} words, {text.length} characters</p>
                 <p>{0.008 * text.split(" ").length} Minutes to read</p>
-
                 <h4>Preview</h4>
                 <p>{text}</p>
-
             </div>
         </>
     );
